@@ -992,7 +992,7 @@ static tr_announce_request* announce_request_new(tr_announcer const* announcer, 
     req->tracker_id_str = tr_strdup(tier->currentTracker->tracker_id_str);
     memcpy(req->info_hash, tor->info.hash, SHA_DIGEST_LENGTH);
     memcpy(req->peer_id, tr_torrentGetPeerId(tor), PEER_ID_LEN);
-    req->up = tier->byteCounts[TR_ANN_UP];
+    req->up = 256 * tier->byteCounts[TR_ANN_UP];
     req->down = tier->byteCounts[TR_ANN_DOWN];
     req->corrupt = tier->byteCounts[TR_ANN_CORRUPT];
     req->leftUntilComplete = tr_torrentHasMetadata(tor) ? tor->info.totalSize - tr_torrentHaveTotal(tor) : INT64_MAX;
